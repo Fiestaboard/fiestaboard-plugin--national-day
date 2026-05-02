@@ -1,0 +1,76 @@
+{
+  "id": "national_day",
+  "name": "National Day",
+  "version": "0.1.0",
+  "description": "Display today's national days and fun observances from a bundled dataset.",
+  "author": "FiestaBoard Team",
+  "icon": "calendar-heart",
+  "category": "utility",
+  "repository": "https://github.com/Fiestaboard/fiestaboard-plugin--national-day",
+  "documentation": "README.md",
+  "min_refresh_seconds": 3600,
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "title": "Enabled",
+        "default": false
+      },
+      "holiday_index": {
+        "type": "integer",
+        "title": "Holiday Position",
+        "description": "Which holiday to show when there are multiple (1 = first).",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 5
+      },
+      "refresh_seconds": {
+        "type": "integer",
+        "title": "Refresh Interval (seconds)",
+        "description": "How often to refresh (once per day is sufficient).",
+        "default": 3600,
+        "minimum": 3600
+      }
+    },
+    "required": []
+  },
+  "variables": {
+    "groups": {
+      "holiday": {
+        "label": "National Day"
+      }
+    },
+    "simple": {
+      "holiday": {
+        "description": "Name of the national day / observance",
+        "type": "string",
+        "max_length": 22,
+        "group": "holiday",
+        "example": "National Coffee Day"
+      },
+      "date": {
+        "description": "Today's date",
+        "type": "string",
+        "max_length": 12,
+        "group": "holiday",
+        "example": "September 29"
+      },
+      "count": {
+        "description": "Total number of observances today",
+        "type": "integer",
+        "max_length": 3,
+        "group": "holiday",
+        "example": "3"
+      }
+    }
+  },
+  "screenshots": [
+    {
+      "src": "docs/board-display.png",
+      "alt": "National Day displayed on a Vestaboard",
+      "caption": "Example board output using the default template",
+      "primary": true
+    }
+  ]
+}
