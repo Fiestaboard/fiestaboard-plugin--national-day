@@ -1,7 +1,7 @@
 {
   "id": "national_day",
   "name": "National Day",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Display today's national days and fun observances from a bundled dataset.",
   "author": "FiestaBoard Team",
   "icon": "calendar-heart",
@@ -74,46 +74,69 @@
     }
   ],
   "demo": {
-    "name": "National Day Demo",
-    "device_type": "flagship",
-    "config": {
-      "enabled": true,
-      "holiday_index": 1,
-      "refresh_seconds": 3600
+    "flagship": {
+      "name": "National Day Demo",
+      "config": {
+        "enabled": true,
+        "holiday_index": 1,
+        "refresh_seconds": 3600
+      },
+      "template": [
+        "National Day",
+        "{{national_day.date}}",
+        "",
+        "{{national_day.holiday}}",
+        "",
+        "{{national_day.count}} observance(s) today"
+      ],
+      "line_metadata": [
+        {
+          "alignment": "center",
+          "wrap": false
+        },
+        {
+          "alignment": "center",
+          "wrap": false
+        },
+        {
+          "alignment": "left",
+          "wrap": false
+        },
+        {
+          "alignment": "center",
+          "wrap": false
+        },
+        {
+          "alignment": "left",
+          "wrap": false
+        },
+        {
+          "alignment": "center",
+          "wrap": false
+        }
+      ]
     },
-    "template": [
-      "National Day",
-      "{{national_day.date}}",
-      "",
-      "{{national_day.holiday}}",
-      "",
-      "{{national_day.count}} observance(s) today"
-    ],
-    "line_metadata": [
-      {
-        "alignment": "center",
-        "wrap": false
-      },
-      {
-        "alignment": "center",
-        "wrap": false
-      },
-      {
-        "alignment": "left",
-        "wrap": false
-      },
-      {
-        "alignment": "center",
-        "wrap": false
-      },
-      {
-        "alignment": "left",
-        "wrap": false
-      },
-      {
-        "alignment": "center",
-        "wrap": false
-      }
-    ]
+    "note": {
+      "name": "National Day (Note)",
+      "template": [
+        "NATIONAL DAY",
+        "{{national_day.holiday}}",
+        "{{national_day.date}}"
+      ],
+      "line_metadata": [
+        {
+          "alignment": "left",
+          "wrap": false
+        },
+        {
+          "alignment": "left",
+          "wrap": true
+        },
+        {
+          "alignment": "left",
+          "wrap": false
+        }
+      ]
+    }
   }
 }
