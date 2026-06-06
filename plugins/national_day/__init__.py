@@ -42,7 +42,7 @@ class NationalDayPlugin(PluginBase):
             if holiday_index >= len(holidays):
                 holiday_index = 0
 
-            holiday = str(holidays[holiday_index])[:22]
+            holiday = str(holidays[holiday_index])
             date_str = today.strftime("%B %-d")
             count = max(0, len(holidays) - 1)
 
