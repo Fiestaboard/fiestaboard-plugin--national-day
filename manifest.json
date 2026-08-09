@@ -73,6 +73,28 @@
       "primary": true
     }
   ],
+  "teaser": "COFFEE DAY 9/29",
+  "previews": [
+    {
+      "device_type": "flagship",
+      "rows": [
+        "     National Day",
+        "     September 29",
+        "",
+        " National Coffee Day",
+        "",
+        "3 observance(s) today"
+      ]
+    },
+    {
+      "device_type": "note",
+      "rows": [
+        "{64}{65} NATIONAL DAY",
+        "COFFEE DAY",
+        "SEPTEMBER 29"
+      ]
+    }
+  ],
   "demo": {
     "flagship": {
       "name": "National Day Demo",
