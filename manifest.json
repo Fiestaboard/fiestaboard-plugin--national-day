@@ -1,7 +1,7 @@
 {
   "id": "national_day",
   "name": "National Day",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Display today's national days and fun observances from a bundled dataset.",
   "author": "FiestaBoard Team",
   "icon": "calendar-heart",

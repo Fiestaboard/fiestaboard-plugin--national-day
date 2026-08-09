@@ -2,13 +2,17 @@
 
 from __future__ import annotations
 
+import datetime
 import json
 from pathlib import Path
-from unittest.mock import patch, Mock
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
+from zoneinfo import ZoneInfo
 
 import pytest
 
 from plugins.national_day import NationalDayPlugin
+from plugins import national_day
 from src.plugins.base import PluginResult
 
 MANIFEST = json.loads("""
@@ -114,3 +118,43 @@ class TestNationalDayPlugin:
         data_file = os.path.join(os.path.dirname(nd_module.__file__), "data", "national_days.json")
         assert os.path.isfile(data_file), f"Data file missing: {data_file}"
 
+    def test_date_uses_configured_timezone_at_utc_day_boundary(self):
+        now = datetime.datetime(2026, 8, 9, 0, 30, tzinfo=datetime.timezone.utc)
+
+        result = national_day._date_in_timezone("America/Los_Angeles", now)
+
+        assert result == datetime.date(2026, 8, 8)
+
+    def test_fetch_data_uses_configured_local_date(self, configured_plugin):
+        local_date = datetime.date(2026, 9, 29)
+
+        with patch(
+            "plugins.national_day._configured_timezone",
+            return_value="America/Los_Angeles",
+        ) as configured_timezone, patch(
+            "plugins.national_day._date_in_timezone",
+            return_value=local_date,
+        ) as date_in_timezone:
+            result = configured_plugin.fetch_data()
+
+        assert result.available is True
+        assert result.data["date"] == "September 29"
+        assert result.data["holiday"] == "National Coffee Day"
+        configured_timezone.assert_called_once_with()
+        date_in_timezone.assert_called_once_with("America/Los_Angeles")
+
+    def test_configured_timezone_prefers_general_setting(self):
+        config = SimpleNamespace(
+            GENERAL_TIMEZONE="America/New_York",
+            TIMEZONE="America/Los_Angeles",
+        )
+
+        with patch("src.config.Config", config):
+            assert national_day._configured_timezone() == "America/New_York"
+
+    def test_invalid_timezone_falls_back_to_utc(self):
+        now = datetime.datetime(2026, 8, 9, 0, 30, tzinfo=ZoneInfo("UTC"))
+
+        result = national_day._date_in_timezone("Not/A_Timezone", now)
+
+        assert result == datetime.date(2026, 8, 9)

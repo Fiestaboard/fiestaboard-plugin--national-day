@@ -8,7 +8,7 @@ Display today's national days and fun observances from a bundled dataset.
 
 ## Overview
 
-The National Day plugin ships with a bundled dataset of popular national days and fun observances organized by month and day. No external API or network connection is required. The dataset covers hundreds of observances.
+The National Day plugin ships with a bundled dataset of popular national days and fun observances organized by month and day. No external API or network connection is required. The dataset covers hundreds of observances and follows the timezone configured in FiestaBoard's general settings.
 
 ## Template Variables
 
@@ -41,6 +41,7 @@ NATIONAL DAY
 - Hundreds of national days and fun observances
 - Multiple observances per day
 - Holiday position selection
+- Local-day rollover using FiestaBoard's configured timezone
 
 ## Author
 
